@@ -1,5 +1,5 @@
 package co.edu.uniquindio.Hotel.services;
 
-public interface Consumible {
+public interface IConsumible {
     String consumir();
 }
