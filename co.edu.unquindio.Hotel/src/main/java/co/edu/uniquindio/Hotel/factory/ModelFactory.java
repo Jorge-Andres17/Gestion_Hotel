@@ -22,7 +22,7 @@ public class ModelFactory {
 
     private Hotel inicializarDatos() {
         Hotel hotel = new Hotel();
-        hotel.setNombre("Hotel");
+        hotel.setNombre("Hotel UQ");
         Habitacion habitacion = new Habitacion();
         habitacion.setNumeroHabitacion("101");
         habitacion.setTipoHabitacion(TipoHabitacion.Doble);
