@@ -1,42 +1,44 @@
 package co.edu.uniquindio.Hotel.model;
 
+import co.edu.uniquindio.Hotel.services.IConsumible;
 import co.edu.uniquindio.Hotel.services.TipoServicio;
 
-public abstract class Servicio {
+public abstract class Servicio implements IConsumible{
     private int idServicio;
-    private TipoServicio nombreServicio;
-    private double precioServicio;
+    private TipoServicio tipoServicio;
 
     public Servicio(){}
 
-    public Servicio(int idServicio, TipoServicio nombreServicio, double precioServicio) {
+    public Servicio(int idServicio, TipoServicio tipoServicio) {
         this.idServicio = idServicio;
-        this.nombreServicio = nombreServicio;
-        this.precioServicio = precioServicio;
+        this.tipoServicio = tipoServicio;
     }
-
+    /**
+     * Método para obtener el id del servicio
+     * @return
+     */
     public int getIdServicio() {
         return idServicio;
     }
-
+    /**
+     * Método para modificar el id del servicio
+     * @param idServicio
+     */
     public void setIdServicio(int idServicio) {
         this.idServicio = idServicio;
     }
-
-
-    public double getPrecioServicio() {
-        return precioServicio;
+    /**
+     * Método para obtener el tipo del servicio
+     * @return
+     */
+    public TipoServicio gTipoServicio() {
+        return tipoServicio;
     }
-
-    public void setPrecioServicio(double precioServicio) {
-        this.precioServicio = precioServicio;
-    }
-
-    public TipoServicio getNombreServicio() {
-        return nombreServicio;
-    }
-
-    public void setNombreServicio(TipoServicio nombreServicio) {
-        this.nombreServicio = nombreServicio;
+    /**
+     * Método para modificar el tipo del servicio
+     * @param tipoServicio
+     */
+    public void setTipoServicio(TipoServicio tipoServicio) {
+        this.tipoServicio = tipoServicio;
     }
 }
