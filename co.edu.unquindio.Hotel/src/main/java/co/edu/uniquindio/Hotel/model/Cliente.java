@@ -20,20 +20,6 @@ public class Cliente {
         listaReservasActivas.add(reserva);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * Método para obtener el nombre del cliente
      * @return
@@ -75,5 +61,13 @@ public class Cliente {
      */
     public void setListaReservas(List<Reserva> listaReservasActivas) {
         this.listaReservasActivas = listaReservasActivas;
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "nombre='" + nombre + '\'' +
+                ", dni='" + dni + '\'' +
+                '}';
     }
 }
