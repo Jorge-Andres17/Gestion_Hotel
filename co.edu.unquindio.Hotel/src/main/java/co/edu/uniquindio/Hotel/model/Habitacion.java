@@ -108,4 +108,13 @@ public class Habitacion {
     public void setListaServicioHabitacion(List<ServicioHabitacion> listaServicioHabitacion) {
         this.listaServicioHabitacion = listaServicioHabitacion;
     }
+
+    @Override
+    public String toString() {
+        return "Habitacion{" +
+                "numeroHabitacion='" + numeroHabitacion + '\'' +
+                ", tipoHabitacion=" + tipoHabitacion +
+                ", precio=" + precio +
+                '}';
+    }
 }

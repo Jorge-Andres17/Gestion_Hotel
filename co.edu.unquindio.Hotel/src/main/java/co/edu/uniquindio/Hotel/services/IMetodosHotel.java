@@ -20,9 +20,9 @@ public interface IMetodosHotel {
     public boolean verificarReserva(int id);
     public void agregarReserva(Reserva reserva);
     public void eliminarReserva(int id);
-    public void reservaActiva(LocalDate fechaActual, Cliente cliente);
+    public String reservaActiva(LocalDate fechaActual, String cedula);
     public int DiasEntreReserva(int id);
     public double valorTotalReserva(String numero, Reserva reserva);
-    public int serviciosTotales(int id, String numHabitacion);
-    public int reservasDeHabitacionMes(String numHabitacion, int mes, int año);
+    public int serviciosTotales(String numHabitacion);
+    public int reservasHabitacionMes(String numHabitacion, int mes, int año);
 }

@@ -4,10 +4,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
-
 import co.edu.uniquindio.Hotel.services.IMetodosHotel;
-
-
 
 public class Hotel implements IMetodosHotel{
     private String nombre;
@@ -122,18 +119,20 @@ public class Hotel implements IMetodosHotel{
     /**
      * Método para obtener las reservas activas de un cliente
      * @param fechaActual
-     * @param cliente
      */
     @Override
-    public void reservaActiva(LocalDate fechaActual, Cliente cliente) {
+    public String reservaActiva(LocalDate fechaActual, String cedula) {
+        StringBuilder resultado = new StringBuilder();
         for (Reserva reserva : listaReservas) {
-            if(reserva.getCliente().equals(cliente)){
-                if((fechaActual.isEqual(reserva.getFechaEntrada()) || fechaActual.isAfter(reserva.getFechaEntrada())) &&
-                (fechaActual.isEqual(reserva.getFechaSalida()) || fechaActual.isBefore(reserva.getFechaSalida()))){
-                    cliente.agregarReservaActiva(reserva);
+            if (reserva.getCliente().getDni().equals(cedula)) {
+                if ((fechaActual.isEqual(reserva.getFechaEntrada()) || fechaActual.isAfter(reserva.getFechaEntrada())) &&
+                        (fechaActual.isEqual(reserva.getFechaSalida()) || fechaActual.isBefore(reserva.getFechaSalida()))) {
+                    reserva.getCliente().agregarReservaActiva(reserva);
+                    resultado.append(reserva.toString()).append("\n");
                 }
             }
         }
+        return resultado.toString();
     }
     /**
      * Método para obtener el número de días de la reserva 
@@ -168,40 +167,34 @@ public class Hotel implements IMetodosHotel{
     }
     /**
      * Método para obtener el número de servicios de una habitacion
-     * @param id
      * @param numHabitacion
      * @return
      */
     @Override
-    public int serviciosTotales(int id, String numHabitacion){
+    public int serviciosTotales(String numHabitacion) {
         int total = 0;
-        if (listaServicioHabitacion == null) {
-            throw new IllegalArgumentException("La lista de servicios no puede ser nula.");
-        }
         for (ServicioHabitacion servicioHabitacion : listaServicioHabitacion) {
-            if(servicioHabitacion.getIdServicio() == id){
-                if (servicioHabitacion.getListaHabitaciones() != null) {
-                    for (Habitacion habitacion : servicioHabitacion.getListaHabitaciones()) {
-                        if (habitacion.getNumeroHabitacion().equals(numHabitacion)) {
-                            total++;
-                        }
-                    }
+            for (Habitacion habitacion : servicioHabitacion.getListaHabitaciones()) {
+                if (habitacion.getNumeroHabitacion().equals(numHabitacion)) {
+                    total++;
                 }
             }
         }
+
         return total;
     }
+
     /**
      * Método para obtener la cantidad de reservas de una habitación en un mes
      * @param numHabitacion
      * @param mes
-     * @param año
+     * @param anio
      * @return
      */
     @Override
-    public int reservasDeHabitacionMes(String numHabitacion, int mes, int año) {
+    public int reservasHabitacionMes(String numHabitacion, int mes, int anio) {
         int total = 0;
-        LocalDate inicioDelMes = LocalDate.of(año, mes, 1);
+        LocalDate inicioDelMes = LocalDate.of(anio, mes, 1);
         LocalDate finDelMes = inicioDelMes.withDayOfMonth(inicioDelMes.lengthOfMonth());
         for (Habitacion habitacion : listaHabitaciones) {
             if(habitacion.getNumeroHabitacion().equals(numHabitacion)){
@@ -233,6 +226,7 @@ public class Hotel implements IMetodosHotel{
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
     /**
      * Método para obtener la lista de clientes del hotel
      * @return
@@ -240,6 +234,7 @@ public class Hotel implements IMetodosHotel{
     public List<Cliente> getListaClientes() {
         return listaClientes;
     }
+
     /**
      * Método para modificar la lista de clientes del hotel
      * @param listaClientes
@@ -247,6 +242,7 @@ public class Hotel implements IMetodosHotel{
     public void setListaClientes(List<Cliente> listaClientes) {
         this.listaClientes = listaClientes;
     }
+
     /**
      * Método para obtener la lista de habitaciones del hotel
      * @return
@@ -254,6 +250,7 @@ public class Hotel implements IMetodosHotel{
     public List<Habitacion> getListaHabitaciones() {
         return listaHabitaciones;
     }
+
     /**
      * Método para modificar la lista de habitaciones del hotel
      * @param listaHabitaciones
@@ -261,6 +258,7 @@ public class Hotel implements IMetodosHotel{
     public void setListaHabitaciones(List<Habitacion> listaHabitaciones) {
         this.listaHabitaciones = listaHabitaciones;
     }
+
     /**
      * Método para obtener la lista de servicios del hotel
      * @return
@@ -268,6 +266,7 @@ public class Hotel implements IMetodosHotel{
     public List<ServicioHabitacion> getListaServicioHabitacion() {
         return listaServicioHabitacion;
     }
+
     /**
      * Método para modificar la lista de servicios del hotel
      * @param listaServicioHabitacion
@@ -275,6 +274,7 @@ public class Hotel implements IMetodosHotel{
     public void setListaServicioHabitacion(List<ServicioHabitacion> listaServicioHabitacion) {
         this.listaServicioHabitacion = listaServicioHabitacion;
     }   
+
     /**
      * Método para obtener la lista de reservas del hotel
      * @return
@@ -282,6 +282,7 @@ public class Hotel implements IMetodosHotel{
     public List<Reserva> getListaReservas() {
         return listaReservas;
     }
+
     /**
      * Método para modificar la lista de reservas del hotel
      * @param listaReservas
@@ -289,7 +290,5 @@ public class Hotel implements IMetodosHotel{
     public void setListaReservas(List<Reserva> listaReservas) {
         this.listaReservas = listaReservas;
     }
-
-    
     
 }

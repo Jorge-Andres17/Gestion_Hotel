@@ -87,4 +87,15 @@ public class Reserva {
     public void setHabitacion(Habitacion habitacion) {
         this.habitacion = habitacion;
     }
+
+    @Override
+    public String toString() {
+        return "Reserva{" +
+                "idReserva=" + idReserva +
+                ", fechaEntrada=" + fechaEntrada +
+                ", fechaSalida=" + fechaSalida +
+                ", cliente=" + cliente +
+                ", habitacion=" + habitacion +
+                '}';
+    }
 }
